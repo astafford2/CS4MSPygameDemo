@@ -81,20 +81,20 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 
 screen = pygame.display.set_mode((800, 600), 0, 32)
-pygame.display.set_caption("RYUK")
+pygame.display.set_caption("PyGame Demo")
 
 clock = pygame.time.Clock()
 ticks = pygame.time.get_ticks()
 
-# Ryuk
-ryuk = SpriteSheetImage(screen)
-ryuk.load("ryuk.png", 48, 64, 4)
-ryukGroup = pygame.sprite.Group()
-ryukGroup.add(ryuk)
-ryuk.position = (400, 400)
-ryuk.frame = 0
-ryuk.first_frame = 0
-ryuk.last_frame = 0
+# Player
+player = SpriteSheetImage(screen)
+player.load("retro-character-sprite-sheet.png", 43, 64, 4)
+playerGroup = pygame.sprite.Group()
+playerGroup.add(player)
+player.position = (400, 400)
+player.frame = 0
+player.first_frame = 0
+player.last_frame = 0
 
 xs = 0
 ys = 0
@@ -103,11 +103,11 @@ while True:
 
     screen.fill((0, 0, 0))
 
-    ryukGroup.update(ticks, 70)
-    ryukGroup.draw(screen)
+    playerGroup.update(ticks, 70)
+    playerGroup.draw(screen)
 
-    ryuk.X += xs
-    ryuk.Y += ys
+    player.X += xs
+    player.Y += ys
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -116,48 +116,50 @@ while True:
 
         if (event.type == pygame.KEYDOWN):
             if (event.key == pygame.K_r):
-                ryuk.position = (400, 400)
-            if (event.key == pygame.K_LEFT):
-                xs = -10
-                ryuk.frame = 4
-                ryuk.first_frame = 4
-                ryuk.last_frame = 7
-            if (event.key == pygame.K_RIGHT):
-                xs = 10
-                ryuk.frame = 8
-                ryuk.first_frame = 8
-                ryuk.last_frame = 11
+                player.position = (400, 400)
+
             if (event.key == pygame.K_UP):
                 ys = -10
-                ryuk.frame = 12
-                ryuk.first_frame = 12
-                ryuk.last_frame = 15
+                player.frame = 4
+                player.first_frame = 4
+                player.last_frame = 7
             if (event.key == pygame.K_DOWN):
                 ys = 10
-                ryuk.frame = 0
-                ryuk.first_frame = 0
-                ryuk.last_frame = 3
+                player.frame = 0
+                player.first_frame = 0
+                player.last_frame = 3
+            if (event.key == pygame.K_LEFT):
+                xs = -10
+                player.frame = 8
+                player.first_frame = 8
+                player.last_frame = 11
+            if (event.key == pygame.K_RIGHT):
+                xs = 10
+                player.frame = 12
+                player.first_frame = 12
+                player.last_frame = 15
+
         if (event.type == pygame.KEYUP):
             if (event.key == pygame.K_LEFT):
                 xs = 0
-                ryuk.frame = 4
-                ryuk.first_frame = 4
-                ryuk.last_frame = 4
+                player.frame = 8
+                player.first_frame = 8
+                player.last_frame = 8
             if (event.key == pygame.K_RIGHT):
                 xs = 0
-                ryuk.frame = 8
-                ryuk.first_frame = 8
-                ryuk.last_frame = 8
+                player.frame = 12
+                player.first_frame = 12
+                player.last_frame = 12
             if (event.key == pygame.K_UP):
                 ys = 0
-                ryuk.frame = 12
-                ryuk.first_frame = 12
-                ryuk.last_frame = 12
+                player.frame = 4
+                player.first_frame = 4
+                player.last_frame = 4
             if (event.key == pygame.K_DOWN):
                 ys = 0
-                ryuk.frame = 0
-                ryuk.first_frame = 0
-                ryuk.last_frame = 0
+                player.frame = 0
+                player.first_frame = 0
+                player.last_frame = 0
 
     clock.tick(30)
     ticks = pygame.time.get_ticks()
