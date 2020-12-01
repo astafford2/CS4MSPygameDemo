@@ -1,7 +1,6 @@
 # Sprite Sheet Animation Demo
 
-
-import pygame, sys, random
+import pygame, sys
 from pygame.locals import *
 
 # initialize pygame
@@ -77,10 +76,9 @@ class SpriteSheetImage(pygame.sprite.Sprite):
 
 
 ##########################################
-white = (255, 255, 255)
 black = (0, 0, 0)
 
-screen = pygame.display.set_mode((800, 600), 0, 32)
+screen = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("PyGame Demo")
 
 clock = pygame.time.Clock()
@@ -101,7 +99,7 @@ ys = 0
 
 while True:
 
-    screen.fill((0, 0, 0))
+    screen.fill(black)
 
     playerGroup.update(ticks, 70)
     playerGroup.draw(screen)
@@ -140,16 +138,6 @@ while True:
                 player.last_frame = 15
 
         if (event.type == pygame.KEYUP):
-            if (event.key == pygame.K_LEFT):
-                xs = 0
-                player.frame = 8
-                player.first_frame = 8
-                player.last_frame = 8
-            if (event.key == pygame.K_RIGHT):
-                xs = 0
-                player.frame = 12
-                player.first_frame = 12
-                player.last_frame = 12
             if (event.key == pygame.K_UP):
                 ys = 0
                 player.frame = 4
@@ -160,6 +148,16 @@ while True:
                 player.frame = 0
                 player.first_frame = 0
                 player.last_frame = 0
+            if (event.key == pygame.K_LEFT):
+                xs = 0
+                player.frame = 8
+                player.first_frame = 8
+                player.last_frame = 8
+            if (event.key == pygame.K_RIGHT):
+                xs = 0
+                player.frame = 12
+                player.first_frame = 12
+                player.last_frame = 12
 
     clock.tick(30)
     ticks = pygame.time.get_ticks()
